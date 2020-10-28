@@ -22,6 +22,7 @@
 
 __Referenced by__:
 - TABLE "wishlist" CONSTRAINT "fk_user" FOREIGN KEY (created_by) REFERENCES user(id) ON DELETE CASCADE
+- TABLE "category" CONSTRAINT "fk_user" FOREIGN KEY (created_by) REFERENCES user(id) ON DELETE CASCADE
 - TABLE "card" CONSTRAINT "fk_user" FOREIGN KEY (created_by) REFERENCES user(id) ON DELETE CASCADE
 - TABLE "review" CONSTRAINT "fk_user" FOREIGN KEY (created_by) REFERENCES user(id) ON DELETE CASCADE
 
@@ -49,10 +50,14 @@ __Referenced by__:
 
 ### Category
 
- Column |       Type        | Nullable |      Default       | Description 
---------|-------------------|----------|--------------------|-------------
- id     | `uuid`            | not null | new generated UUID | UUID for the `CategoryObject` 
- name   | `string`          | not null |                    | Name of the Category 
+ Column     |       Type        | Nullable |      Default       | Description 
+------------|-------------------|----------|--------------------|-------------
+ id         | `uuid`            | not null | new generated UUID | UUID for the `CategoryObject` 
+ name       | `string`          | not null |                    | Name of the Category 
+ created_by | `uuid`            | not null |                    | UUID for the `UserObject`
+
+__Foreign-key constraints__:
+- "fk_user" FOREIGN KEY (created_by) REFERENCES user(id) ON DELETE CASCADE
 
 __Referenced by__:
 - TABLE "wishlist_category_map" CONSTRAINT "fk_category_table" FOREIGN KEY (category) REFERENCES category(id) ON DELETE CASCADE
@@ -106,7 +111,7 @@ __Referenced by__:
  id               | `uuid`            | not null | new generated UUID    | UUID for the `ReviewObject` 
  comment          | `string`          | not null | ""                    | Review Comment 
  rating           | `integer`         |          | null                  | Rating between 0 and 10  
- will_recommend   | `boolean`         |          | null                  | Weather User would recommend the card or not 
+ will_recommend   | `boolean`         |          | null                  | Weather User would recommend the card or not
  created_at       | `datetime`        | not null |                       | Time at which the `ReviewObject` created 
  modified_at      | `datetime`        | not null |                       | Time at which the `ReviewObject` modified 
  created_by       | `uuid`            | not null |                       | UUID for the `UserObject` who created the Review 
