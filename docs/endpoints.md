@@ -128,7 +128,7 @@ __Response__
 }
 ```
 
-## Create a user
+## Create a user (Register)
 
 ```json
 POST /api/users
@@ -545,6 +545,7 @@ Status: 200 OK
     }
   ]
 }
+```
 
 ## Remove a category from a wishlist
 
@@ -620,10 +621,50 @@ Status: 200 OK
 ## Add a category to a wishlist
 
 ```json
-POST /api/wishlists/:wishlist_id/categories/:category_id
+POST /api/wishlists/:wishlist_id/categories
 ```
 
+__Parameter__
+
+  Column             |       Type        | Nullable | Description 
+---------------------|-------------------|----------|-------------
+ id                  | `uuid`            | not null | UUID of the `CategoryObject`
+
+
+__Request__
+
+```josn
+{
+  "id": "12abcd28-c635-4ac3-8e3c-b79ad066abcd"
+}
+```
+
+__Response__
+
 Status: 201 Created
+
+```json
+{
+  "id": "fffe9d28-c635-4ac3-8e3c-b79ad066abcd",
+  "title": "Movies",
+  "is_public": true, 
+  "created_at": "2020-10-27T15:21:22.895341Z",
+  "modified_at": "2020-10-27T15:21:22.895341Z",
+  "created_by": {
+    "id": "7c030b31-c832-4639-9368-dd8633f8baa6",
+    "first_name": "",
+    "last_name": "",
+    "photo": "http://example.com/media/users/01-0123/profile.png" 
+  },
+  "categories": [
+    {
+      "id": "12abcd28-c635-4ac3-8e3c-b79ad066abcd",
+      "name": "comedy",
+      "created_by": "123e9d28-c635-4ac3-8e3c-b79ad06000dff"
+    }
+  ]
+}
+```
 
 
 # Card
