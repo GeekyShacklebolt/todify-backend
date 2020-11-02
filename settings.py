@@ -10,7 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
+# Standard Library
 import os
+
+# Third Party Stuff
 import environ
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -41,6 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'versatileimagefield',
+    'todify.users',
 ]
 
 MIDDLEWARE = [
@@ -127,3 +132,5 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ]
 }
+
+AUTH_USER_MODEL = "users.User"
