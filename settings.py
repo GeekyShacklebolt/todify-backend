@@ -46,6 +46,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'versatileimagefield',
     'todify.users',
+    'todify.wishlists',
+    'todify.cards',
+    'todify.reviews',
 ]
 
 MIDDLEWARE = [
