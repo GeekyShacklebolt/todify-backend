@@ -7,17 +7,18 @@ from . import models
 @admin.register(models.Wishlist)
 class WishlistAdmin(admin.ModelAdmin):
     fieldsets = (
-        ('Primary Key', {
+        ("Primary Key", {
             "fields": ("id",),
         }),
-        ('Wishlist Info', {
-            'fields': ('title', 'description', 'is_public', 'created_by'),
+        ("Wishlist Info", {
+            "fields": ("title", "description", "is_public", "created_by"),
         }),
-        ('Timestamps', {
-            'fields': ('created_at', 'modified_at'),
+        ("Timestamps", {
+            "fields": ("created_at", "modified_at"),
         }),
     )
     list_display = (
+        "id",
         "title",
         "created_by",
         "is_public",
@@ -36,7 +37,6 @@ class WishlistAdmin(admin.ModelAdmin):
         "created_by__username",
     )
     ordering = (
-        "title",
         "created_at",
     )
 
@@ -44,14 +44,15 @@ class WishlistAdmin(admin.ModelAdmin):
 @admin.register(models.Category)
 class CategoryAdmin(admin.ModelAdmin):
     fieldsets = (
-        ('Primary Key', {
+        ("Primary Key", {
             "fields": ("id",),
         }),
-        ('Category Info', {
-            'fields': ('name', 'created_by'),
+        ("Category Info", {
+            "fields": ("name", "created_by"),
         }),
     )
     list_display = (
+        "id",
         "name",
         "created_by",
     )
@@ -70,14 +71,14 @@ class CategoryAdmin(admin.ModelAdmin):
 @admin.register(models.WishlistCategoryMapping)
 class WishlistCategoryMappingAdmin(admin.ModelAdmin):
     fieldsets = (
-        ('Primary Key', {
+        ("Primary Key", {
             "fields": ("id",),
         }),
-        ('Wishlist Category Mapping Info', {
-            'fields': ('wishlist', 'category'),
+        ("Wishlist Category Mapping Info", {
+            "fields": ("wishlist", "category"),
         }),
-        ('Timestamps', {
-            'fields': ('created_at', 'modified_at'),
+        ("Timestamps", {
+            "fields": ("created_at", "modified_at"),
         }),
     )
     list_display = (
