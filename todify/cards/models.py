@@ -16,7 +16,7 @@ class Card(TimeStampedUUIDModel):
         max_length=512, null=False, blank=True, default="", verbose_name="Description",
     )
     link = models.URLField(
-        max_length=200, null=False, blank=False, default="", verbose_name="Link",
+        max_length=200, null=False, blank=True, default="", verbose_name="Link",
     )
     created_by = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="cards"
@@ -25,7 +25,7 @@ class Card(TimeStampedUUIDModel):
         "wishlists.Wishlist", on_delete=models.CASCADE, related_name="cards"
     )
     photo = VersatileImageField(
-        upload_to=upload_to, blank=True, null=True, ppoi_field="photo_poi", verbose_name="Avatar",
+        upload_to=upload_to, blank=True, null=True, ppoi_field="photo_poi", verbose_name="Photo",
     )
     photo_poi = PPOIField(verbose_name="Photo's Point of Interest")
 
