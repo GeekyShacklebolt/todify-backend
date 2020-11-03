@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'todify.wishlists',
     'todify.cards',
     'todify.reviews',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [

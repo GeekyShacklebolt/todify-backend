@@ -15,7 +15,13 @@ djangorestframework==3.11.0
 psycopg2-binary==2.8.6
 django-uuid-upload-path==1.0.0
 django-versatileimagefield==2.0
+django-extensions==3.0.3
 
 # Testing
 # -------------------------------------
 flake8-mypy==17.8.0
+
+# Generating DB Schema
+# --------------------------------------
+pydot==1.4.1
+pyparsing==2.4.7
