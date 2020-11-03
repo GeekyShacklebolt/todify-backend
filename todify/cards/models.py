@@ -13,7 +13,7 @@ class Card(TimeStampedUUIDModel):
         max_length=120, null=False, blank=False, default="", verbose_name="Title",
     )
     description = models.CharField(
-        max_length=360, null=False, blank=True, default="", verbose_name="Description",
+        max_length=512, null=False, blank=True, default="", verbose_name="Description",
     )
     link = models.URLField(
         max_length=200, null=False, blank=False, default="", verbose_name="Link",

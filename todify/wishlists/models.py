@@ -28,11 +28,10 @@ class Wishlist(TimeStampedUUIDModel):
         max_length=120, null=False, blank=False, default="", verbose_name="Title",
     )
     description = models.CharField(
-        max_length=360, null=False, blank=True, default="", verbose_name="Description",
+        max_length=512, null=False, blank=True, default="", verbose_name="Description",
     )
     is_public = models.BooleanField(
-        verbose_name="Visibility Status",
-        default=True,
+        verbose_name="Visibility Status", null=False, blank=True, default=True,
         help_text="Designates whether this wishlist should be treated as "
         "public. Any todify user can view a public wishlist.",
     )

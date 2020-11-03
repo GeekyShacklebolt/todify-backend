@@ -25,7 +25,7 @@ class Migration(migrations.Migration):
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('modified_at', models.DateTimeField(auto_now=True)),
                 ('title', models.CharField(default='', max_length=120, verbose_name='Title')),
-                ('description', models.CharField(blank=True, default='', max_length=360, verbose_name='Description')),
+                ('description', models.CharField(blank=True, default='', max_length=512, verbose_name='Description')),
                 ('link', models.URLField(default='', verbose_name='Link')),
                 ('photo', versatileimagefield.fields.VersatileImageField(blank=True, null=True, upload_to=uuid_upload_path.storage.upload_to, verbose_name='Avatar')),
                 ('photo_poi', versatileimagefield.fields.PPOIField(default='0.5x0.5', editable=False, max_length=20, verbose_name="Photo's Point of Interest")),
