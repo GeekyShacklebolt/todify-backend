@@ -36,7 +36,7 @@ class Migration(migrations.Migration):
                 ('modified_at', models.DateTimeField(auto_now=True)),
                 ('title', models.CharField(default='', max_length=120, verbose_name='Title')),
                 ('description', models.CharField(blank=True, default='', max_length=512, verbose_name='Description')),
-                ('is_public', models.BooleanField(blank=True, default=True, help_text='Designates whether this wishlist should be treated as public. Any todify user can view a public wishlist.', verbose_name='Visibility Status')),
+                ('is_public', models.BooleanField(blank=True, default=True, help_text='Designates whether this wishlist should be treated as public. Any todify user can view any public wishlist.', verbose_name='Publically Visible')),
             ],
             options={
                 'verbose_name': 'wishlist',

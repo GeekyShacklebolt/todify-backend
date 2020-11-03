@@ -31,9 +31,9 @@ class Wishlist(TimeStampedUUIDModel):
         max_length=512, null=False, blank=True, default="", verbose_name="Description",
     )
     is_public = models.BooleanField(
-        verbose_name="Visibility Status", null=False, blank=True, default=True,
+        verbose_name="Publically Visible", null=False, blank=True, default=True,
         help_text="Designates whether this wishlist should be treated as "
-        "public. Any todify user can view a public wishlist.",
+        "public. Any todify user can view any public wishlist.",
     )
     created_by = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="wishlists"
