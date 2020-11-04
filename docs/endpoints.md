@@ -2,10 +2,87 @@
 
 # Authentication
 
+## Register a user
+
+```json
+POST /api/auth/register
+```
+
+   Column    |       Type        | Nullable | Optional | Description 
+-------------|-------------------|----------|----------|-------------
+ username    | `string`          | not null | No       | Username of the User 
+ email       | `string`          | not null | No       | Email address of the User 
+ password    | `string`          | not null | No       | Password for the User
+                                            
+__Request__                                
+
+```json
+{
+  "username": "GeekyShacklebolt",
+  "email": "shiva+1@fueled.com",
+  "password": "VerySafePassWord"
+}
+```
+
+__Response__
+
+Status: 201 Created
+
+```json
+{
+    "id": "2a8dc6d6-d7d2-4f53-8e89-8f54951fbf14",
+    "username": "GeekyShacklebolt",
+    "email": "shiva+1@fueled.com",
+    "first_name": "",
+    "last_name": "",
+    "avatar": null,
+    "last_login": null,
+    "created_at": "2020-11-04T15:37:37.589979Z"
+}
+```
+
+# Current User Actions
+
+## Get Profile
+
+**User Schema**:
+
+   Column    |       Type        | Nullable | Description 
+-------------|-------------------|----------|-------------
+ id          | `uuid`            | not null | UUID for the `UserObject`
+ first_name  | `string`          | not null | First name of the User 
+ last_name   | `string`          | not null | Last name of the User 
+ email       | `string`          | not null | Email address of the User 
+ username    | `string`          | not null | Username of the User 
+ created_at  | `datetime`        | not null | Time at which the `UserObject` created 
+ last_login  | `datetime`        |          | Time at which the user last logged in 
+ avatar      | `string`          |          | URL of the image uploaded by the User 
+
+```json
+GET /api/me (requires authentication)
+```
+
+__Response__
+
+Status: 200 OK
+
+```json
+{
+    "id": "2a8dc6d6-d7d2-4f53-8e89-8f54951fbf14",
+    "username": "GeekyShacklebolt",
+    "email": "shiva+1@fueled.com",
+    "first_name": "",
+    "last_name": "",
+    "avatar": null,
+    "last_login": null,
+    "created_at": "2020-11-04T15:37:37.589979Z"
+}
+```
+
 ## Change password
 
 ```
-POST /api/auth/password_change (requires authentication)
+POST /api/me/password_change (requires authentication)
 ```
 
 __Parameters__
@@ -30,144 +107,20 @@ __Response__
 Status: 204 No-Content
 ```
 
-## Request password for reset
+**NOTE**:
+- Error out in case "current_password" doesn't match
 
-Send an email to user if the email exist.
+Status: 400 Bad Request
 
 ```
-POST /api/auth/password_reset
-```
-
-__Parameters__
-
-Name  | Description
-------|-------------------------------------
-email | (required) valid email of an existing user.
-
-__Request__
-
-```json
 {
-    "email": "hello@example.com"
+    "current_password": [
+        "Incorrect current password!"
+    ]
 }
 ```
 
-__Response__
-
-```json
-
-Status: 200 OK
-{
-    "message": "Further instructions will be sent to the email if it exists"
-}
-```
-
-## Confirm password reset
-
-Confirm password reset for the user using the token sent in email.
-
-```
-POST /api/auth/password_reset_confirm
-```
-
-__Parameters__
-
-Name          | Description
---------------|-------------------------------------
-new_password  | New password of the user
-token         | Token decoded from the url (verification link)
-
-__Request__
-
-```json
-{
-  "new_password": "new_pass",
-  "token" : "IgotTHISfromTHEverificationLINKinEmail"
-}
-```
-
-__Response__
-
-```
-Status: 204 No-Content
-```
-
-# User actions
-
-## Get Profile
-
-**User Schema**:
-
-   Column    |       Type        | Nullable | Description 
--------------|-------------------|----------|-------------
- id          | `uuid`            | not null | UUID for the `UserObject`
- first_name  | `string`          | not null | First name of the User 
- last_name   | `string`          | not null | Last name of the User 
- email       | `string`          | not null | Email address of the User 
- username    | `string`          | not null | Username of the User 
- created_at  | `datetime`        | not null | Time at which the `UserObject` created 
- modified_at | `datetime`        | not null | Time at which the `UserObject` modified 
- avatar      | `string`          |          | URL of the image uploaded by the User 
-
-```json
-GET /api/me (requires authentication)
-```
-
-__Response__
-
-```json
-{
-  "id": "51907be9-b80c-4782-9a17-f3cfef1542d2",
-  "first_name": "Test",
-  "last_name": "test",
-  "email": "shiva+1@fueled.com",
-  "username": "geekyshack",
-  "created_at": "2020-09-11T19:44:14.319308Z",
-  "modified_at": "2020-09-11T19:44:14.319308Z",
-  "avatar": "http://localhost:8000/media/users/user/pShZ4ZdZTq-yb8HXX3rJqQ.png"
-}
-```
-
-## Create a user (Register)
-
-```json
-POST /api/users
-```
-
-   Column    |       Type        | Nullable | Optional | Description 
--------------|-------------------|----------|----------|-------------
- email       | `string`          | not null | No       | Email address of the User 
- username    | `string`          | not null | No       | Username of the User 
- password    | `string`          | not null | No       | Password for the User
-                                            
-__Example__                                
-
-```json
-{
-  "username": "GeekyShacklebolt",
-  "email": "shiva+1@fueled.com",
-  "password": "VerySafePassWord"
-}
-```
-
-__Response__
-
-Status: 201 Created
-
-```json
-{
-  "id": "e5ee9d28-c635-4ac3-8e3c-b79ad06615bd",
-  "first_name": "",
-  "last_name": "",
-  "email": "shiva+1@fueled.com",
-  "username": "GeekyShacklebolt",
-  "created_at": "2020-09-11T19:44:14.319308Z",
-  "modified_at": "2020-09-11T19:44:14.319308Z",
-  "avatar": "http://localhost:8000/media/users/user/pShZ4ZdZTq-yb8HXX3rJqQ.png"
-}
-```
-
-## Update profile & avatar
+## Update profile
 
 ```json
 PATCH /api/me (requires authentication)
@@ -177,20 +130,21 @@ __Parameter__
 
    Column    |       Type        | Nullable | Optional | Description
 -------------|-------------------|----------|----------|-------------
+ username    | `string`          | not null | Yes      | Username of the User
+ email       | `string`          | not null | Yes      | Email of the User
  first_name  | `string`          | not null | Yes      | First name of the User
  last_name   | `string`          | not null | Yes      | Last name of the User
- email       | `string`          | not null | Yes      | Email of the User
- username    | `string`          | not null | Yes      | Username of the User
  avatar      | `string`          | not null | Yes      | URL of the image uploaded by the User
 
-__Example__
+__Request__
 
 ```json
 {
-  "first_name": "James",
-  "last_name": "Warner",
-  "username": "GeekyShack",
-  "avatar": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg=="
+    "username": "GeekyyyShacklebolt",
+    "email": "shiva+2@fueled.com",
+    "first_name": "Shiva",
+    "last_name": "Saxena",
+    "avatar": null
 }
 ```
 
@@ -200,37 +154,58 @@ Status: 200 OK
 
 ```json
 {
-  "id": "51907be9-b80c-4782-9a17-f3cfef1542d2",
-  "first_name": "James",
-  "last_name": "Warner",
-  "email": "shiva+1@fueled.com",
-  "username": "GeekyShack",
-  "created_at": "2020-09-11T19:44:14.319308Z",
-  "modified_at": "2020-09-11T19:44:14.319308Z",
-  "avatar": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg=="
+    "id": "2a8dc6d6-d7d2-4f53-8e89-8f54951fbf14",
+    "username": "GeekyyyShacklebolt",
+    "email": "shiva+2@fueled.com",
+    "first_name": "Shiva",
+    "last_name": "Saxena",
+    "avatar": null,
+    "last_login": null,
+    "created_at": "2020-11-04T15:37:37.589979Z"
 }
 ```
 
-## Get profile of a single User using username
+## Upload avatar
 
 ```json
-GET /api/users?username="geekyshack" (requires authentication)
+POST /api/me/avatar_upload (requires authentication)
+```
+
+__Parameter__
+
+   Column    |       Type        | Nullable | Optional | Description
+-------------|-------------------|----------|----------|-------------
+ avatar      | `string`          | not null | Yes      | URL of the image uploaded by the User
+
+**NOTE**:
+- Image will be uploaded as multipart data as a streaming HTTP request.
+
+__Response__
+
+Status: 201 Created
+
+```json
+{
+    "id": "2a8dc6d6-d7d2-4f53-8e89-8f54951fbf14",
+    "username": "GeekyyyShacklebolt",
+    "email": "shiva+2@fueled.com",
+    "first_name": "Shiva",
+    "last_name": "Saxena",
+    "avatar": "/.media/users/user/wYHeZ9B1QMylTJ7-82QLaQ.png",
+    "last_login": null,
+    "created_at": "2020-11-04T15:37:37.589979Z"
+}
+```
+
+## Remove avatar
+
+```json
+DELETE /api/me/avatar_remove (requires authentication)
 ```
 
 __Response__
 
-```json
-{
-  "id": "51907be9-b80c-4782-9a17-f3cfef1542d2",
-  "first_name": "Test",
-  "last_name": "test",
-  "email": "shiva+1@fueled.com",
-  "username": "geekyshack",
-  "created_at": "2020-09-11T19:44:14.319308Z",
-  "modified_at": "2020-09-11T19:44:14.319308Z",
-  "avatar": "http://localhost:8000/media/users/user/pShZ4ZdZTq-yb8HXX3rJqQ.png"
-}
-```
+Status: 204 No Content
 
 ## Delete user account
 
@@ -243,6 +218,93 @@ DELETE /api/me (requires authentication)
 
 Status: 204 No Content
 
+# Other User Actions
+
+## List users
+
+```json
+GET /api/users
+```
+
+__Response__
+
+Status: 200 OK
+
+```json
+{
+    "count": 12,
+    "next": "http://127.0.0.1:8000/api/users?page=2",
+    "previous": null,
+    "results": [
+        {
+            "id": "2a8dc6d6-d7d2-4f53-8e89-8f54951fbf14",
+            "username": "GeekyyyShacklebolt",
+            "email": "shiva+2@fueled.com",
+            "first_name": "Shiva",
+            "last_name": "Saxena",
+            "avatar": "http://127.0.0.1:8000/.media/users/user/RlZCiYg0SSKvUdGR1SirZw.png",
+            "last_login": "2020-11-04T12:56:02.229889Z",
+            "created_at": "2020-11-04T15:37:37.589979Z"
+        },
+        {
+            "id": "ba04f06d-8296-4c0b-a14e-f0b87671ed3d",
+            "username": "akash",
+            "email": "akash+1@test.com",
+            "first_name": "",
+            "last_name": "",
+            "avatar": null,
+            "last_login": "2020-11-04T12:56:02.229889Z",
+            "created_at": "2020-11-04T12:56:02.229889Z"
+        }
+    ]
+}
+```
+
+## Get profiles of a single User using id
+
+```json
+GET /api/users/:id
+```
+
+__Response__
+
+Status: 200 OK
+
+```json
+{
+    "id": "2a8dc6d6-d7d2-4f53-8e89-8f54951fbf14",
+    "username": "GeekyyyShacklebolt",
+    "email": "shiva+2@fueled.com",
+    "first_name": "Shiva",
+    "last_name": "Saxena",
+    "avatar": "http://127.0.0.1:8000/.media/users/user/RlZCiYg0SSKvUdGR1SirZw.png",
+    "last_login": null,
+    "created_at": "2020-11-04T15:37:37.589979Z"
+}
+```
+
+## Get profile of a single User using username
+
+```json
+GET /api/users?username="GeekyyyShacklebolt"
+```
+
+__Response__
+
+Status: 200 OK
+
+```json
+{
+    "id": "2a8dc6d6-d7d2-4f53-8e89-8f54951fbf14",
+    "username": "GeekyyyShacklebolt",
+    "email": "shiva+2@fueled.com",
+    "first_name": "Shiva",
+    "last_name": "Saxena",
+    "avatar": "/.media/users/user/wYHeZ9B1QMylTJ7-82QLaQ.png",
+    "last_login": null,
+    "created_at": "2020-11-04T15:37:37.589979Z"
+}
+```
 
 # Wishlist
 

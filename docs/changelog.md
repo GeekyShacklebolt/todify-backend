@@ -1,22 +1,29 @@
 ## Current Version 0.0.0
 
+### Nov 4, 2020
+
+- Implement API of `users` app for phase 1
+- Update docs: `README.md`, `endpoints.md`, `user_defined_tables.md`
+- Add scripts: `Makefile`, `generate_db_schema.py`
+- Add img: `updated-database-graph.svg`
+
 ### Nov 3, 2020
 
-- Add models to "wishlists" app
+- Add models to `wishlists` app
     + Wishlist
     + Category
     + WishlistCategoryMapping
-- Add models to "cards" app
+- Add models to `cards` app
     + Card
-- Add models to "reviews" app
+- Add models to `reviews` app
     + Review
 
 ### Nov 2, 2020
 
-- Add abstract models to "base" app
+- Add abstract models to `base` app
     + UUIDModel
     + TimeStampedUUIDModel
-- Add models to "users" app
+- Add models to `users` app
     + UserManager
     + User
 
