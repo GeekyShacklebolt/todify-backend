@@ -24,7 +24,7 @@ class Migration(migrations.Migration):
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('modified_at', models.DateTimeField(auto_now=True)),
                 ('title', models.CharField(max_length=120, verbose_name='Title')),
-                ('description', models.CharField(blank=True, default=None, max_length=512, null=True, verbose_name='Description')),
+                ('description', models.CharField(blank=True, default='', max_length=512, null=False, verbose_name='Description')),
                 ('rating', models.IntegerField(blank=True, default=None, help_text='Star rating 0 to 10', null=True, validators=[django.core.validators.MinValueValidator(0), django.core.validators.MaxValueValidator(10)], verbose_name='Rating')),
                 ('will_recommend', models.BooleanField(blank=True, default=None, help_text='Designates whether the user would like to recommend the card to others', null=True, verbose_name='Will Recommend')),
                 ('card', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='reviews', to='cards.Card')),

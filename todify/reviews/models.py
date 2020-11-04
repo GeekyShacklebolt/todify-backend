@@ -12,7 +12,7 @@ class Review(TimeStampedUUIDModel):
         max_length=120, null=False, blank=False, verbose_name="Title",
     )
     description = models.CharField(
-        max_length=512, null=True, blank=True, default=None, verbose_name="Description",
+        max_length=512, null=False, blank=True, default="", verbose_name="Description",
     )
     rating = models.IntegerField(
         null=True, blank=True, default=None, verbose_name="Rating",

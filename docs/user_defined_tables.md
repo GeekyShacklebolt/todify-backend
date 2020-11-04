@@ -146,7 +146,7 @@ Referenced by:
  created_at     | `datetime`    | not null |         | Timestamp at which review is created
  modified_at    | `datetime`    | not null |         | Timestamp at which the review last modified
  title          | `string`(120) | not null |         | Review Title
- description    | `string`(512) |          | null    | Review Description
+ description    | `string`(512) | not null | ""      | Review Description
  rating         | `integer`     |          | null    | Review Rating 0 to 10
  will_recommend | `boolean`     |          | null    | Designates wheather the review recommends the card to other users
  card           | `uuid`        | not null |         | UUID for the `CardObject` for which the review is created

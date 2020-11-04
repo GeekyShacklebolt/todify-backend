@@ -51,10 +51,10 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin, TimeStampedUUIDModel):
     first_name = models.CharField(
-        max_length=120, null=False, blank=False, default="", verbose_name="First Name",
+        max_length=120, null=False, blank=True, default="", verbose_name="First Name",
     )
     last_name = models.CharField(
-        max_length=120, null=False, blank=False, default="", verbose_name="Last Name",
+        max_length=120, null=False, blank=True, default="", verbose_name="Last Name",
     )
     email = CIEmailField(
         null=False, blank=False, unique=True, db_index=True, verbose_name="Email Address",
