@@ -286,7 +286,7 @@ Status: 200 OK
 ## Get profile of a single User using username
 
 ```json
-GET /api/users?username="GeekyyyShacklebolt"
+GET /api/users?username=GeekyyyShacklebolt
 ```
 
 __Response__
@@ -295,14 +295,21 @@ Status: 200 OK
 
 ```json
 {
-    "id": "2a8dc6d6-d7d2-4f53-8e89-8f54951fbf14",
-    "username": "GeekyyyShacklebolt",
-    "email": "shiva+2@fueled.com",
-    "first_name": "Shiva",
-    "last_name": "Saxena",
-    "avatar": "/.media/users/user/wYHeZ9B1QMylTJ7-82QLaQ.png",
-    "last_login": null,
-    "created_at": "2020-11-04T15:37:37.589979Z"
+    "count": 1,
+    "next": null,
+    "previous": null,
+    "results": [
+        {
+            "id": "2a8dc6d6-d7d2-4f53-8e89-8f54951fbf14",
+            "username": "GeekyyyShacklebolt",
+            "email": "shiva+2@fueled.com",
+            "first_name": "Shiva",
+            "last_name": "Saxena",
+            "avatar": "http://127.0.0.1:8000/.media/users/user/RlZCiYg0SSKvUdGR1SirZw.png",
+            "last_login": null,
+            "created_at": "2020-11-04T15:37:37.589979Z"
+        }
+    ]
 }
 ```
 
