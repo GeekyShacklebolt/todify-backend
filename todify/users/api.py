@@ -92,5 +92,5 @@ class UserViewset(viewsets.GenericViewSet,
         queryset = models.User.objects.all()
         username = self.request.query_params.get('username', None)
         if username is not None:
-            queryset = queryset.filter(username__in=username)
+            queryset = queryset.filter(username=username)
         return queryset
